@@ -39,6 +39,44 @@ configsentinel scan . --format json
 configsentinel explain CS-MCP-001
 ```
 
+## Pre-commit Hook
+
+You can run ConfigSentinel automatically before each commit with [pre-commit](https://pre-commit.com/).
+
+Install ConfigSentinel and pre-commit in your development environment:
+
+```bash
+python -m pip install -e .
+python -m pip install pre-commit
+```
+
+Add this `.pre-commit-config.yaml` file to the root of your repository:
+
+```yaml
+repos:
+  - repo: local
+    hooks:
+      - id: configsentinel
+        name: ConfigSentinel
+        entry: configsentinel scan .
+        language: system
+        pass_filenames: false
+```
+
+Install the Git hook:
+
+```bash
+pre-commit install
+```
+
+Run the hook manually at any time:
+
+```bash
+pre-commit run configsentinel --all-files
+```
+
+This local hook uses the `configsentinel` command already installed in your active environment. ConfigSentinel runs offline, does not call LLMs, and does not send telemetry or project data anywhere.
+
 ## Supported Config Families
 
 | Family | Files |

@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "missingCommand": {
+      "args": ["relative/path"]
+    }
+  },
+  "unknown": true
+}

@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "safe": {
+      "command": "python",
+      "args": ["server.py"]
+    }
+  }
+}

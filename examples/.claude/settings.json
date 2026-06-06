@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": ["bash", "Bash(*)"]
+  },
+  "env": [],
+  "tools": [],
+  "unknownSetting": true
+}

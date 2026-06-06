@@ -1,0 +1,9 @@
+name: map-event
+on:
+  pull_request_target:
+    branches: [main]
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo inspect

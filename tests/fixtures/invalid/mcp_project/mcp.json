@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "broad": {
+      "command": "node",
+      "args": ["/"]
+    },
+    "missingCommand": {
+      "args": ["$HOME/project"]
+    },
+    "blankCommand": {
+      "command": "  "
+    },
+    "badEntry": "not-an-object"
+  },
+  "unexpected": true
+}

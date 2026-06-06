@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": ["Read(src/**)"]
+  },
+  "env": {
+    "NODE_ENV": "test"
+  },
+  "hooks": {},
+  "model": "claude-sonnet",
+  "statusLine": {
+    "type": "minimal"
+  },
+  "includeCoAuthoredBy": true
+}

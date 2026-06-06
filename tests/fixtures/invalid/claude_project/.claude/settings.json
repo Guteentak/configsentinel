@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": ["*", "bash", "Bash(*)", "shell(rm -rf /)"]
+  },
+  "env": [],
+  "hooks": "not-valid",
+  "model": false,
+  "statusLine": 123,
+  "includeCoAuthoredBy": "yes",
+  "tools": [],
+  "allowedTools": [],
+  "mysterySetting": true
+}

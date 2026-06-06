@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "filesystem": {
+      "args": ["/"]
+    }
+  },
+  "unexpected": true
+}

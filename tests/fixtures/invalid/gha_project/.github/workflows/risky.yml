@@ -1,0 +1,16 @@
+name: risky
+on: pull_request_target
+permissions: write-all
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - run: echo "token=abc123"
+      - run: echo "ghp_example"
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - run: echo "sk-test"
+      - run: echo "api_key=value"

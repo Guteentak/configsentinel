@@ -1,0 +1,8 @@
+name: risky
+on: pull_request_target
+permissions: write-all
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "token=example"

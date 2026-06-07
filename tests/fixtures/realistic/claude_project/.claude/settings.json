@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": ["Read(src/**)", "Edit(tests/**)"]
+  },
+  "env": {
+    "NODE_ENV": "test"
+  },
+  "hooks": {
+    "PostToolUse": []
+  },
+  "model": "claude-sonnet",
+  "includeCoAuthoredBy": false
+}

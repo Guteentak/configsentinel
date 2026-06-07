@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "local-docs": {
+      "command": "python",
+      "args": ["tools/mcp_docs_server.py", "docs"]
+    }
+  }
+}

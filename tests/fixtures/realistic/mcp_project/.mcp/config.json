@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "narrow-filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./src"]
+    },
+    "root-filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/"]
+    },
+    "home-filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "~"]
+    },
+    "missing-command": {
+      "args": ["scripts/server.py"]
+    }
+  }
+}

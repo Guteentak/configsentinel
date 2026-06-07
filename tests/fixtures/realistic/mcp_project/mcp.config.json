@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "workspace-search": {
+      "command": "node",
+      "args": ["scripts/search-server.js", "./src"]
+    }
+  }
+}

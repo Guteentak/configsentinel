@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": ["Bash(*)", "shell(make deploy)"]
+  },
+  "env": [],
+  "hooks": "not-an-object",
+  "model": false,
+  "statusLine": 123,
+  "tools": [],
+  "allowedTools": [],
+  "experimentalSetting": true
+}

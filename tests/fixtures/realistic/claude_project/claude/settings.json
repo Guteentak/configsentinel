@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": ["Read(config/**)"]
+  },
+  "env": {
+    "CONFIGSENTINEL_ENV": "fixture"
+  },
+  "hooks": [],
+  "model": "claude-haiku"
+}

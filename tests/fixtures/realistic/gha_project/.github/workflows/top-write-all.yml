@@ -1,0 +1,13 @@
+name: top write all
+
+on:
+  push:
+
+permissions: write-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - run: echo "build"

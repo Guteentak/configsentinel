@@ -1,0 +1,16 @@
+name: comment and string noise
+
+on:
+  push:
+
+permissions:
+  contents: read
+
+# Current behavior flags this comment because it contains pull_request_target.
+# Current behavior also flags this comment because it contains token=example.
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo "The string pull_request_target appears in documentation."

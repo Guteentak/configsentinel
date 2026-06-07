@@ -1,5 +1,12 @@
 # ConfigSentinel
 
+[![CI](https://github.com/Guteentak/configsentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/Guteentak/configsentinel/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/Guteentak/configsentinel?include_prereleases)](https://github.com/Guteentak/configsentinel/releases)
+[![License](https://img.shields.io/github/license/Guteentak/configsentinel)](https://github.com/Guteentak/configsentinel/blob/main/LICENSE)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+![Offline Only](https://img.shields.io/badge/offline-only-brightgreen)
+![No Telemetry](https://img.shields.io/badge/telemetry-none-brightgreen)
+
 Lint AI agent, MCP, and automation configs before they break production.
 
 ConfigSentinel is an offline Python CLI that scans AI-development-related configuration files and reports schema errors, unknown keys, dangerous permissions, security risks, reliability issues, and deprecated settings.

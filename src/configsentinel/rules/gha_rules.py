@@ -96,7 +96,7 @@ class PullRequestTargetUsageRule(Rule):
         )
 
     def check(self, file_path: Path, parsed_data: Any, raw_text: str) -> list[Issue]:
-        if "pull_request_target" not in raw_text:
+        if not _has_pull_request_target_event(parsed_data):
             return []
         return [_issue(self, file_path, "Workflow uses pull_request_target.")]
 
@@ -152,6 +152,25 @@ def invalid_yaml_issue(
         line=line,
         column=column,
     )
+
+
+def _has_pull_request_target_event(parsed_data: Any) -> bool:
+    if not isinstance(parsed_data, dict):
+        return False
+    event = _workflow_event(parsed_data)
+    if isinstance(event, str):
+        return event == "pull_request_target"
+    if isinstance(event, list):
+        return any(item == "pull_request_target" for item in event)
+    if isinstance(event, dict):
+        return "pull_request_target" in event
+    return False
+
+
+def _workflow_event(parsed_data: dict[Any, Any]) -> Any:
+    if "on" in parsed_data:
+        return parsed_data["on"]
+    return parsed_data.get(True)
 
 
 def _issue(rule: Rule, file_path: Path, message: str) -> Issue:

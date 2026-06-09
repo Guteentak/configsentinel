@@ -63,6 +63,114 @@ def test_gha_pull_request_target_rule() -> None:
     assert len(issues) == 3
 
 
+def test_gha_pull_request_target_string_event(tmp_path) -> None:
+    workflow = tmp_path / ".github" / "workflows" / "string-event.yml"
+    workflow.parent.mkdir(parents=True)
+    workflow.write_text(
+        "name: string event\n"
+        "on: pull_request_target\n"
+        "jobs:\n"
+        "  review:\n"
+        "    runs-on: ubuntu-latest\n"
+        "    timeout-minutes: 5\n"
+        "    steps:\n"
+        "      - run: echo review\n",
+        encoding="utf-8",
+    )
+
+    result = scan_path(tmp_path)
+
+    assert [issue.rule_id for issue in result.issues] == ["CS-GHA-004"]
+
+
+def test_gha_pull_request_target_list_event(tmp_path) -> None:
+    workflow = tmp_path / ".github" / "workflows" / "list-event.yml"
+    workflow.parent.mkdir(parents=True)
+    workflow.write_text(
+        "name: list event\n"
+        "on: [push, pull_request_target]\n"
+        "jobs:\n"
+        "  review:\n"
+        "    runs-on: ubuntu-latest\n"
+        "    timeout-minutes: 5\n"
+        "    steps:\n"
+        "      - run: echo review\n",
+        encoding="utf-8",
+    )
+
+    result = scan_path(tmp_path)
+
+    assert [issue.rule_id for issue in result.issues] == ["CS-GHA-004"]
+
+
+def test_gha_pull_request_target_mapping_event(tmp_path) -> None:
+    workflow = tmp_path / ".github" / "workflows" / "mapping-event.yml"
+    workflow.parent.mkdir(parents=True)
+    workflow.write_text(
+        "name: mapping event\n"
+        "on:\n"
+        "  pull_request_target:\n"
+        "    branches: [main]\n"
+        "jobs:\n"
+        "  review:\n"
+        "    runs-on: ubuntu-latest\n"
+        "    timeout-minutes: 5\n"
+        "    steps:\n"
+        "      - run: echo review\n",
+        encoding="utf-8",
+    )
+
+    result = scan_path(tmp_path)
+
+    assert [issue.rule_id for issue in result.issues] == ["CS-GHA-004"]
+
+
+def test_gha_pull_request_target_quoted_on_key(tmp_path) -> None:
+    workflow = tmp_path / ".github" / "workflows" / "quoted-on.yml"
+    workflow.parent.mkdir(parents=True)
+    workflow.write_text(
+        "name: quoted on key\n"
+        '"on":\n'
+        "  pull_request_target:\n"
+        "    branches: [main]\n"
+        "jobs:\n"
+        "  review:\n"
+        "    runs-on: ubuntu-latest\n"
+        "    timeout-minutes: 5\n"
+        "    steps:\n"
+        "      - run: echo review\n",
+        encoding="utf-8",
+    )
+
+    result = scan_path(tmp_path)
+
+    assert [issue.rule_id for issue in result.issues] == ["CS-GHA-004"]
+
+
+def test_gha_pull_request_target_comment_and_string_mentions_do_not_trigger(tmp_path) -> None:
+    workflow = tmp_path / ".github" / "workflows" / "mentions.yml"
+    workflow.parent.mkdir(parents=True)
+    workflow.write_text(
+        "name: mentions only\n"
+        "on: push\n"
+        "# pull_request_target is mentioned here.\n"
+        "env:\n"
+        '  NOTE: "pull_request_target is mentioned in documentation text"\n'
+        "jobs:\n"
+        "  docs:\n"
+        "    runs-on: ubuntu-latest\n"
+        "    timeout-minutes: 5\n"
+        "    steps:\n"
+        "      - name: mention pull_request_target\n"
+        '        run: echo "pull_request_target"\n',
+        encoding="utf-8",
+    )
+
+    result = scan_path(tmp_path)
+
+    assert [issue.rule_id for issue in result.issues] == []
+
+
 def test_gha_hardcoded_secret_like_value_rule() -> None:
     result = scan_path(INVALID_GHA_PROJECT)
 
